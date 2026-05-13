@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume — Ajit Kumar Sahoo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  /* CORE THEME VARIABLES FROM YOUR INDEX */
+  :root {
+    --bg: #080c10;
+    --bg2: #0d1117;
+    --surface: rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(99,229,210,0.2);
+    --text: #e8edf2;
+    --text2: #8a9ab0;
+    --text3: #5a6b7e;
+    --cyan: #63e5d2;
+    --violet: #a78bfa;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --radius: 16px;
+  }
+  .light-mode {
+    --bg: #f0f4f8;
+    --bg2: #e4eaf1;
+    --surface: rgba(0,0,0,0.04);
+    --border: rgba(0,0,0,0.1);
+    --border2: rgba(13,138,130,0.3);
+    --text: #0d1117;
+    --text2: #3a4a5e;
+    --text3: #6a7e92;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.6;transition:background 0.4s,color 0.4s; overflow-x: hidden;}
+  ::selection{background:rgba(99,229,210,0.25);color:var(--cyan)}
+  
+  /* NAVBAR */
+  nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:14px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,12,16,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+  .light-mode nav{background:rgba(240,244,248,0.85)}
+  .nav-logo{font-family:var(--font-display);font-weight:800;font-size:1.2rem;color:var(--cyan);text-decoration:none}
+  .nav-right{display:flex;align-items:center;gap:16px}
+  .theme-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);transition:all 0.3s;font-size:1rem}
+  .theme-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+
+  /* BUTTONS */
+  .btn-primary{padding:12px 24px;border-radius:50px;background:var(--cyan);color:#080c10;font-weight:700;font-size:0.9rem;text-decoration:none;transition:all 0.3s;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(99,229,210,0.3)}
+  .btn-ghost{padding:11px 24px;border-radius:50px;border:1px solid var(--border);color:var(--text);font-weight:600;font-size:0.9rem;text-decoration:none;transition:all 0.3s}
+  .btn-ghost:hover{border-color:var(--border2);color:var(--cyan)}
+
+  /* RESUME PAGE SPECIFICS */
+  .resume-container { max-width: 1000px; margin: 120px auto 60px; padding: 0 40px; min-height: 80vh; }
+  .resume-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; flex-wrap: wrap; gap: 20px; }
+  .resume-title { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--text); line-height: 1.1; }
+  .resume-title span { color: var(--cyan); }
+  .resume-actions { display: flex; gap: 12px; }
+  
+  .resume-viewer-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; height: 75vh; min-height: 600px; position: relative; overflow: hidden; }
+  .resume-viewer-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background: linear-gradient(90deg, var(--cyan), var(--violet)); }
+  iframe { width: 100%; height: 100%; border: none; border-radius: 8px; background-color: #fff; } /* White bg for PDF visibility */
+
+  .mobile-fallback { display: none; text-align: center; padding: 60px 20px; color: var(--text2); }
+  
+  /* FOOTER */
+  footer{padding:40px;border-top:1px solid var(--border);text-align:center; margin-top: auto;}
+  .footer-logo{font-family:var(--font-display);font-weight:800;font-size:1rem;color:var(--cyan)}
+
+  /* RESPONSIVE */
+  @media(max-width: 768px) {
+    nav, .resume-container { padding-left: 20px; padding-right: 20px; }
+    .resume-header { flex-direction: column; align-items: flex-start; }
+    /* Mobile browsers struggle to render iframes with PDFs natively, so we show a clean download prompt instead */
+    .resume-viewer-card { height: auto; min-height: unset; padding: 0; border: none; background: transparent; }
+    .resume-viewer-card::before { display: none; }
+    iframe { display: none; }
+    .mobile-fallback { display: block; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">AKS.</a>
+  <div class="nav-right">
+    <button class="theme-btn" id="theme-toggle" aria-label="Toggle theme">🌙</button>
+  </div>
+</nav>
+
+<div class="resume-container">
+  <div class="resume-header">
+    <h1 class="resume-title">My <span>Resume</span></h1>
+    <div class="resume-actions">
+      <a href="Resume_Ajit_Kumar_Sahoo (1).pdf" download class="btn-primary">↓ Download PDF</a>
+      <a href="index.html" class="btn-ghost">← Back to Portfolio</a>
+    </div>
+  </div>
+
+  <div class="resume-viewer-card">
+    <iframe src="Resume_Ajit_Kumar_Sahoo (1).pdf" title="Ajit Kumar Sahoo Resume"></iframe>
+    
+    <div class="mobile-fallback">
+      <h3 style="color: var(--text); margin-bottom: 10px; font-family: var(--font-display);">Resume Preview Unavailable</h3>
+      <p>Mobile browsers cannot preview PDFs directly. Please use the button above to download and view the resume.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">AKS.</div>
+  <div style="font-size:0.8rem;color:var(--text3); margin-top: 8px;">© 2025 Ajit Kumar Sahoo</div>
+</footer>
+
+<script>
+  // THEME TOGGLE (Matches your index.html)
+  const themeBtn = document.getElementById('theme-toggle');
+  let isLight = false;
+  themeBtn.addEventListener('click', () => {
+    isLight = !isLight;
+    document.body.classList.toggle('light-mode', isLight);
+    themeBtn.textContent = isLight ? '🌙' : '☀️';
+  });
+</script>
+
+</body>
+</html>
