@@ -361,7 +361,7 @@
       <div class="hero-btns">
         <a href="#projects" class="btn-primary">View Projects</a>
         <a href="#contact" class="btn-secondary">Contact Me</a>
-        <a href="#" class="btn-ghost" onclick="alert('Resume download coming soon!')">↓ Resume</a>
+        <a href="resume.html" class="btn-ghost">View Resume</a>
       </div>
     </div>
     <div class="hero-visual">
@@ -403,7 +403,7 @@
         <div class="section-tag">Who I Am</div>
         <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:800;color:var(--text);margin-bottom:8px">CSE Student.<br>Problem Solver.<br><span style="color:var(--cyan)">Builder.</span></h2>
         <div class="about-stat-grid">
-          <div class="about-stat"><span class="stat-num">7.7</span><div class="stat-label">CGPA</div></div>
+          <div class="about-stat"><span class="stat-num">7.8</span><div class="stat-label">CGPA</div></div>
           <div class="about-stat"><span class="stat-num">2+</span><div class="stat-label">Projects</div></div>
           <div class="about-stat"><span class="stat-num">2026</span><div class="stat-label">Graduation</div></div>
           <div class="about-stat"><span class="stat-num">5+</span><div class="stat-label">Tech Skills</div></div>
@@ -572,7 +572,7 @@
         <div class="edu-degree">B.Tech — Computer Science Engineering</div>
         <div class="edu-school">GITA Autonomous College, Bhubaneswar, Odisha</div>
         <div class="edu-meta">
-          <span class="edu-badge cgpa">CGPA: 7.7</span>
+          <span class="edu-badge cgpa">CGPA: 7.8</span>
           <span class="edu-badge pct" style="background:rgba(96,165,250,0.1);border-color:rgba(96,165,250,0.2);color:var(--blue)">Current</span>
         </div>
       </div>
@@ -907,8 +907,9 @@ function sendMsg() {
   document.getElementById('msg').value = '';
 }
 
-// === COUNTER ANIMATION ===
-function animateCounter(el, target, suffix = '') {
+
+f// === COUNTER ANIMATION ===
+function animateCounter(el, target, suffix = '', isDecimal = false) {
   let start = 0;
   const duration = 1500;
   const startTime = performance.now();
@@ -916,8 +917,12 @@ function animateCounter(el, target, suffix = '') {
     const elapsed = now - startTime;
     const progress = Math.min(elapsed / duration, 1);
     const ease = 1 - Math.pow(1 - progress, 3);
-    const val = typeof target === 'number' ? Math.round(start + (target - start) * ease) : target;
-    el.textContent = val + suffix;
+    
+    const currentVal = start + (target - start) * ease;
+    // If it's a decimal, keep 1 decimal point (e.g., 7.8). Otherwise, round to whole number.
+    const displayVal = isDecimal ? currentVal.toFixed(1) : Math.round(currentVal);
+    
+    el.textContent = displayVal + suffix;
     if (progress < 1) requestAnimationFrame(update);
   }
   requestAnimationFrame(update);
@@ -929,7 +934,8 @@ const statObserver = new IntersectionObserver(entries => {
     if (e.isIntersecting) {
       const el = e.target;
       const text = el.textContent;
-      if (text === '7.7') animateCounter(el, 77, '');
+      // Tell the function this target is a decimal!
+      if (text === '7.8') animateCounter(el, 7.8, '', true); 
       else if (text === '2+') { animateCounter(el, 2, '+'); }
       else if (text === '2026') { setTimeout(() => animateCounter(el, 2026, ''), 200); }
       else if (text === '5+') { animateCounter(el, 5, '+'); }
@@ -937,7 +943,7 @@ const statObserver = new IntersectionObserver(entries => {
     }
   });
 }, { threshold: 0.5 });
-statNums.forEach(n => statObserver.observe(n));
+statNums.forEach(n => statObserver.observe(n));;
 </script>
 </body>
 </html>
